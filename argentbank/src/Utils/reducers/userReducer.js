@@ -22,4 +22,23 @@ export default createReducer(initialState, (builder) =>
         if (draft.connected === true) {
             return  
         }
-    }))
+    })
+    .addCase(logOut, (draft) => {
+        if (draft.connected === true) {
+            draft.connected = false
+            draft.userData = {}
+            draft.JWTtoken = null
+            return
+        }
+        if (draft.connected === false) {
+            return
+        }
+    })
+    
+    
+    
+    
+    
+    
+    
+    )

@@ -3,14 +3,15 @@ import { Link } from 'react-router-dom'
 import '../../styles/Header.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUserCircle } from '@fortawesome/free-solid-svg-icons'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { selectUserLogin } from '../../Utils/selectors'
-import store from "../../Utils/store"
+import { logOut } from '../../Utils/reducers/userReducer'
+
 
 
 function Header() {
     const connected = useSelector(selectUserLogin)
-
+    const dispatch = useDispatch()
     return (
         <div>
             <nav className="main-nav">
@@ -18,11 +19,15 @@ function Header() {
                     <img className="main-nav-logo-image" src={Logo} alt="Argent Bank Logo" />
                     <h1 className="sr-only">Argent Bank</h1>
                 </Link>
-                <div>
+                <div className='log-in-out'>
                     <FontAwesomeIcon icon={ faUserCircle } />
-                    <Link className="main-nav-item" to={'/signin'}>
-                     {connected ? 'Log Out' : 'Log In'}
-                    </Link>
+                    {connected 
+                    ? 
+                    <p className='main-nav-item' onClick={() => dispatch(logOut()) }>Log out</p> 
+                    : 
+                    <Link className="main-nav-item" to={"/signin"}>
+                     Log In
+                    </Link>}
                 </div>
             </nav>
         </div>
