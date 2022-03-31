@@ -5,11 +5,12 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUserCircle } from '@fortawesome/free-solid-svg-icons'
 import { useSelector } from 'react-redux'
 import { selectUserLogin } from '../../Utils/selectors'
+import store from "../../Utils/store"
 
 
 function Header() {
     const connected = useSelector(selectUserLogin)
-    console.log(connected)
+
     return (
         <div>
             <nav className="main-nav">
@@ -20,7 +21,7 @@ function Header() {
                 <div>
                     <FontAwesomeIcon icon={ faUserCircle } />
                     <Link className="main-nav-item" to={'/signin'}>
-                     Sign In
+                     {connected ? 'Log Out' : 'Log In'}
                     </Link>
                 </div>
             </nav>
