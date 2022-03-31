@@ -3,9 +3,13 @@ import { Link } from 'react-router-dom'
 import '../../styles/Header.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUserCircle } from '@fortawesome/free-solid-svg-icons'
+import { useSelector } from 'react-redux'
+import { selectUserLogin } from '../../Utils/selectors'
 
 
 function Header() {
+    const connected = useSelector(selectUserLogin)
+    console.log(connected)
     return (
         <div>
             <nav className="main-nav">

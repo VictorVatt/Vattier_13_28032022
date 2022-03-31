@@ -11,7 +11,7 @@ async function userLogIn(email, password) {
         
       })
       .catch(function (error) {
-        console.log(error);
+        return error
       });
 
 }

@@ -6,8 +6,20 @@ const initialState = {
     userData: {},
 }
 
+export const logIn = createAction('logIn')
+export const setUser = createAction('setUser')
+export const upddateUser = createAction('updateUser')
+export const logOut = createAction('logOut')
 
-
-const userReducer = createReducer({
-
-})
+export default createReducer(initialState, (builder) =>
+    builder
+    .addCase(logIn, (draft, JWTtoken) => {
+        if (draft.connected === false) {
+            draft.connected = true
+            draft.JWTtoken = JWTtoken.payload
+            return
+        }
+        if (draft.connected === true) {
+            return  
+        }
+    }))
