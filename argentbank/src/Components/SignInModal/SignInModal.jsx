@@ -14,11 +14,12 @@ function SignInModal() {
       if(userName.length < 3 || password.length < 3 ) {
         return setError("Veuillez renseigner un email et un mdp valide")
       }
-
       const response = await userLogIn(userName, password)
-      setUserName('')
+
       setPassword('')
-      
+      setUserName('')
+      console.log(response.data.body.token)
+
     }
 
     return (
@@ -47,7 +48,8 @@ function SignInModal() {
           <div className="input-remember">
             <input 
               type="checkbox" 
-              id="remember-me" 
+              id="remember-me"
+ 
             />
             <label htmlFor="remember-me">Remember me</label>
           </div>
