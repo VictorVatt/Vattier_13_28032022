@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import userLogIn from "../../Api/ApiPorvider"
 import "../../styles/SignInModal.css"
@@ -8,6 +8,7 @@ function SignInModal() {
     const [userName, setUserName] = useState('')
     const [password, setPassword] = useState('')
     const [error, setError] = useState('')
+    const [rememberMe, setRemenberMe ] = useState(false)
 
     const dispatch = useDispatch()
 
@@ -20,14 +21,16 @@ function SignInModal() {
       }
       const response = await userLogIn(userName, password)
         if (response.data.status !== 200) {
-          console.log(response.data)
+          console.log("pipi")
         }
       setPassword('')
       setUserName('')
       dispatch(logIn(response.data.body.token))
 
     }
-
+    useEffect(() => {
+      localStorage.setItem("remenberMe", JSON.stringify(rememberMe))
+    })
     return (
        <section className="sign-in-content">
         <i className="fa fa-user-circle sign-in-icon"></i>
@@ -55,7 +58,7 @@ function SignInModal() {
             <input 
               type="checkbox" 
               id="remember-me"
- 
+              onChange={() => setRemenberMe(!rememberMe)}
             />
             <label htmlFor="remember-me">Remember me</label>
           </div>
