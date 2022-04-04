@@ -34,6 +34,9 @@ export default createReducer(initialState, (builder) =>
             return
         }
     })
+    .addCase(setUser, (draft, userData) => {
+        draft.userData = userData.payload
+    })
     
     
     

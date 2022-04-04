@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUserCircle } from '@fortawesome/free-solid-svg-icons'
 import { useDispatch, useSelector } from 'react-redux'
 import { selectUserLogin } from '../../Utils/selectors'
+import { useNavigate } from 'react-router-dom'
 import { logOut } from '../../Utils/reducers/userReducer'
 
 
@@ -12,6 +13,12 @@ import { logOut } from '../../Utils/reducers/userReducer'
 function Header() {
     const connected = useSelector(selectUserLogin)
     const dispatch = useDispatch()
+    const navigate = useNavigate()
+
+    let logOutBtn = () => {
+        dispatch(logOut()) 
+        navigate("/signin")
+    }
     return (
         <div>
             <nav className="main-nav">
@@ -23,7 +30,7 @@ function Header() {
                     <FontAwesomeIcon icon={ faUserCircle } />
                     {connected 
                     ? 
-                    <p className='main-nav-item' onClick={() => dispatch(logOut()) }>Log out</p> 
+                    <p className='main-nav-item' onClick={logOutBtn}>Log out</p> 
                     : 
                     <Link className="main-nav-item" to={"/signin"}>
                      Log In

@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { useNavigate } from "react-router-dom"
 import { useDispatch } from 'react-redux'
 import userLogIn from "../../Api/ApiPorvider"
 import "../../styles/SignInModal.css"
@@ -11,7 +12,7 @@ function SignInModal() {
     const [rememberMe, setRemenberMe ] = useState(false)
 
     const dispatch = useDispatch()
-
+    let navigate = useNavigate()
     const handleSubmit = async (e) => { 
       e.preventDefault()
       setError('')
@@ -19,18 +20,20 @@ function SignInModal() {
       if(userName.length === 0 || password.length === 0 ) {
         return setError("Veuillez renseigner un email et un mdp valide")
       }
-      const response = await userLogIn(userName, password)
-        if (response.data.status !== 200) {
-          console.log("pipi")
+      const response = await userLogIn(userName, password, rememberMe)
+        if (response.status !== 200) {
+          setError("Mot de passe ou email inconnu")
         }
       setPassword('')
       setUserName('')
       dispatch(logIn(response.data.body.token))
-
+      navigate('/profile')
     }
     useEffect(() => {
       localStorage.setItem("remenberMe", JSON.stringify(rememberMe))
     })
+
+
     return (
        <section className="sign-in-content">
         <i className="fa fa-user-circle sign-in-icon"></i>

@@ -1,17 +1,25 @@
 import axios from "axios"
 
 
-async function userLogIn(email, password) {
+async function userLogIn(email, password, rememberMe) {
     return await axios.post('http://localhost:3001/api/v1/user/login', {
         "email": email,
         "password": password
       })
       .then(function (response) {
-        return response
+        if (response.data.body.token) {
+          if (rememberMe) {
+            sessionStorage.setItem("JWTtoken", response.data.body.token)
+          }
+          return response
+          
+        }
         
       })
       .catch(function (error) {
-        return error
+        if (error.response) {
+          return error.response.data
+        }
       });
 
 }
