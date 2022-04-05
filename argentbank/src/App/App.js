@@ -17,12 +17,12 @@ function App() {
           <Routes>
             <Route path='/' element={<Home />} />
             {connected ? (
-              <Route path='/profile' element={<User />} />
+              <Route exact path='/profile' element={<User />} />
             ) :
             (
-              <Route path='/signin' element={<SignInPage />} />
+              <Route exact path='/signin' element={<SignInPage />} />
             )}
-            <Route path='*' element={<Home />} />
+            <Route exact path='*' element={<Home />} />
           </Routes>
         <Footer />
       

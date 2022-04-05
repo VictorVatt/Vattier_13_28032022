@@ -2,9 +2,9 @@ import Logo from '../../assets/argentBankLogo.png'
 import { Link } from 'react-router-dom'
 import '../../styles/Header.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faUserCircle } from '@fortawesome/free-solid-svg-icons'
+import { faUserCircle, faArrowRightFromBracket } from '@fortawesome/free-solid-svg-icons'
 import { useDispatch, useSelector } from 'react-redux'
-import { selectUserLogin } from '../../Utils/selectors'
+import { selectFirstName, selectUserLogin } from '../../Utils/selectors'
 import { useNavigate } from 'react-router-dom'
 import { logOut } from '../../Utils/reducers/userReducer'
 
@@ -12,11 +12,13 @@ import { logOut } from '../../Utils/reducers/userReducer'
 
 function Header() {
     const connected = useSelector(selectUserLogin)
+    const firstName = useSelector(selectFirstName)
     const dispatch = useDispatch()
     const navigate = useNavigate()
 
-    let logOutBtn = () => {
+    let handleLogOut = () => {
         dispatch(logOut()) 
+        sessionStorage.clear()
         navigate("/signin")
     }
     return (
@@ -27,14 +29,20 @@ function Header() {
                     <h1 className="sr-only">Argent Bank</h1>
                 </Link>
                 <div className='log-in-out'>
-                    <FontAwesomeIcon icon={ faUserCircle } />
                     {connected 
-                    ? 
-                    <p className='main-nav-item' onClick={logOutBtn}>Log out</p> 
+                    ?
+                    <div className='logged-container'> 
+                        <Link className='main-nav-item' to={"/profile"}>{firstName}</Link>
+                        <FontAwesomeIcon icon={faArrowRightFromBracket} className="logout-icon"/>
+                        <p className='main-nav-item' onClick={handleLogOut}>Log out</p> 
+                    </div>
                     : 
-                    <Link className="main-nav-item" to={"/signin"}>
-                     Log In
-                    </Link>}
+                    <div>
+                        <FontAwesomeIcon icon={ faUserCircle } /> 
+                        <Link className="main-nav-item" to={"/signin"}>
+                        Log In
+                        </Link>
+                    </div>}
                 </div>
             </nav>
         </div>
