@@ -22,6 +22,7 @@ function App() {
             (
               <Route path='/signin' element={<SignInPage />} />
             )}
+            <Route path='*' element={<Home />} />
           </Routes>
         <Footer />
       

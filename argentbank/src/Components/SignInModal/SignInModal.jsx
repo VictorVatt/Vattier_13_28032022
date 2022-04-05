@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useNavigate } from "react-router-dom"
 import { useDispatch } from 'react-redux'
-import userLogIn from "../../Api/ApiPorvider"
+import ApiProvider from '../../Api/ApiPorvider'
 import "../../styles/SignInModal.css"
 import { logIn } from '../../Utils/reducers/userReducer'
 
@@ -20,7 +20,7 @@ function SignInModal() {
       if(userName.length === 0 || password.length === 0 ) {
         return setError("Veuillez renseigner un email et un mdp valide")
       }
-      const response = await userLogIn(userName, password, rememberMe)
+      const response = await new ApiProvider().userLogIn(userName, password, rememberMe)
         if (response.status !== 200) {
           setError("Mot de passe ou email inconnu")
         }
