@@ -13,6 +13,7 @@ function SignInModal() {
 
     const dispatch = useDispatch()
     let navigate = useNavigate()
+    
     const handleSubmit = async (e) => { 
       e.preventDefault()
       setError('')
