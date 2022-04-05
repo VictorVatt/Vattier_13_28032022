@@ -2,28 +2,27 @@ import UserHeader from "../Components/UserHeader/UserHeader"
 import UserCard from "../Components/UserCard/UserCard"
 import { useEffect, useState } from "react"
 import { selectJWTtoken } from "../Utils/selectors"
-import { useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import ApiProvider from "../Api/ApiPorvider"
+import { setUser } from "../Utils/reducers/userReducer"
 
 
 function User() {
+    let dispatch = useDispatch()
     let JWTtoken = useSelector(selectJWTtoken)
-    const [firstName, setFirstName] = useState('')
-    const [lastName, setLastName] = useState('')
 
     useEffect(() => {
         async function getUserProfile() {
             const response = await new ApiProvider().getUserProfileData(JWTtoken)
             console.log(response.data.body)
-            setFirstName(response.data.body.firstName)
-            setLastName(response.data.body.lastName)
+            dispatch(setUser(response.data.body))
             return response
         }
         getUserProfile()
-    }, [JWTtoken])
+    }, [JWTtoken, dispatch])
     return (
         <div className="user-container">
-            <UserHeader firstName={firstName} lastName={lastName}/>
+            <UserHeader  />
             <UserCard />
         </div>
     )

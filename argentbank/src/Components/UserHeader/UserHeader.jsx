@@ -1,5 +1,10 @@
+import { useSelector } from "react-redux"
 import "../../styles/User.css"
-function UserHeader( { firstName, lastName }) {
+import { selectFirstName, selectLastName } from "../../Utils/selectors"
+function UserHeader() {
+    let firstName = useSelector(selectFirstName)
+    let lastName = useSelector(selectLastName)
+
     return (
         <div className="header">
             <h1>Welcome back<br />{firstName} {lastName}!</h1>

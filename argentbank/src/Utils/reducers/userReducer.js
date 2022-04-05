@@ -37,7 +37,10 @@ export default createReducer(initialState, (builder) =>
     .addCase(setUser, (draft, userData) => {
         draft.userData = userData.payload
     })
-    
+    .addCase(upddateUser, (draft, userData) => {
+        draft.userData.firstName = userData.payload.firstName
+        draft.userData.lastName = userData.payload.lastName
+    })
     
     
     
