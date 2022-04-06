@@ -8,7 +8,7 @@ function RememberLogin() {
     const dispatch = useDispatch()
 
     async function loginInRememeberUser() {
-        const JWTtoken = sessionStorage.getItem("JWTtoken")
+        const JWTtoken = localStorage.getItem("JWTtoken")
 
         if (JWTtoken) {
             const response = await new ApiProvider().getUserProfileData(JWTtoken)

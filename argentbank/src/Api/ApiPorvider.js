@@ -10,7 +10,7 @@ class ApiProvider {
         .then(function (response) {
           if (response.data.body.token) {
             if (rememberMe) {
-              sessionStorage.setItem("JWTtoken", response.data.body.token)
+              localStorage.setItem("JWTtoken", response.data.body.token)
             }
             return response
             

@@ -41,10 +41,4 @@ export default createReducer(initialState, (builder) =>
         draft.userData.firstName = userData.payload.firstName
         draft.userData.lastName = userData.payload.lastName
     })
-    
-    
-    
-    
-    
-    
-    )
+)

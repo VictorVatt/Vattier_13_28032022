@@ -18,7 +18,7 @@ function Header() {
 
     let handleLogOut = () => {
         dispatch(logOut()) 
-        sessionStorage.clear()
+        localStorage.clear()
         navigate("/signin")
     }
     return (
