@@ -6,10 +6,15 @@ import SignInPage from '../Pages/SignInPage';
 import User from '../Pages/User';
 import { useSelector } from 'react-redux';
 import { selectUserLogin } from '../Utils/selectors';
-import { BrowserRouter, Route, Router, Routes } from 'react-router-dom';
+import { BrowserRouter, Route , Routes } from 'react-router-dom';
+import RememberLogin from '../Utils/RememberLogin';
 
 function App() {
   const connected = useSelector(selectUserLogin)
+
+  RememberLogin()
+
+
   return (
     <div className="App">
       <BrowserRouter>
