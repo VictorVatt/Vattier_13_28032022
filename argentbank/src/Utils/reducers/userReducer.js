@@ -8,7 +8,7 @@ const initialState = {
 
 export const logIn = createAction('logIn')
 export const setUser = createAction('setUser')
-export const upddateUser = createAction('updateUser')
+export const updateUser = createAction('updateUser')
 export const logOut = createAction('logOut')
 
 export default createReducer(initialState, (builder) =>
@@ -37,7 +37,7 @@ export default createReducer(initialState, (builder) =>
     .addCase(setUser, (draft, userData) => {
         draft.userData = userData.payload
     })
-    .addCase(upddateUser, (draft, userData) => {
+    .addCase(updateUser, (draft, userData) => {
         draft.userData.firstName = userData.payload.firstName
         draft.userData.lastName = userData.payload.lastName
     })
