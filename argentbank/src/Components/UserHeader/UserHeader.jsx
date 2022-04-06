@@ -7,6 +7,7 @@ import { selectFirstName, selectJWTtoken, selectLastName } from "../../Utils/sel
 
 function UserHeader() {
     let dispatch = useDispatch()
+
     let [editMode, setEditMode] = useState(false)
     let [editedFirstName, setEditedFirstName] = useState('')
     let [editedLastName, setEditedLastNamee] = useState('')
@@ -24,6 +25,7 @@ function UserHeader() {
         dispatch(updateUser(response.data.body))
         setEditMode(false)
     }
+
     return (
         <div className="header">
             {!editMode ? (
@@ -32,11 +34,11 @@ function UserHeader() {
             </div>) : (
             <div className="edit-header">
                 <h1>Welcome back</h1>
-                <input type="text" placeholder={firstNameFromGlobalState} onChange={(e) => setEditedFirstName(e.target.value)}/>
- 
-                <input type="text" placeholder={lastNameFromGlobalState} onChange={(e) => setEditedLastNamee(e.target.value)}/>
-
-                <button onClick={() => handleChangeUserName(editedFirstName, editedLastName, JWTtoken)}>Validate</button>
+                <div className="edit-container">
+                    <input className="change-name" type="text" placeholder={firstNameFromGlobalState} onChange={(e) => setEditedFirstName(e.target.value)}/>
+                    <input className="change-name" type="text" placeholder={lastNameFromGlobalState} onChange={(e) => setEditedLastNamee(e.target.value)}/>
+                    <button className="edit-button" onClick={() => handleChangeUserName(editedFirstName, editedLastName, JWTtoken)}>Validate</button>
+                </div>
             </div>
             )}
             <button className="edit-button" onClick={() => setEditMode(!editMode)}>

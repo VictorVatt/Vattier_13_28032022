@@ -211,3 +211,15 @@
     width: 200px;
   }
 }
+
+.change-name {
+  margin: 0 1rem;
+  width: 100px;
+  padding: 8px;
+}
+.edit-container {
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
