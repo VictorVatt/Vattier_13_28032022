@@ -11,15 +11,15 @@ import { logOut } from '../../Utils/reducers/userReducer'
 
 
 function Header() {
-    const connected = useSelector(selectUserLogin)
-    const firstName = useSelector(selectFirstName)
+    const connected = useSelector(selectUserLogin) // récuperation du state connected via useSelector
+    const firstName = useSelector(selectFirstName) // récuperation du state firstname de userData via useSelector
     const dispatch = useDispatch()
     const navigate = useNavigate()
 
     let handleLogOut = () => {
-        dispatch(logOut()) 
-        localStorage.clear()
-        navigate("/signin")
+        dispatch(logOut()) // dispatch l'action creator logOut
+        localStorage.clear() // clear le local storage
+        navigate("/signin") // redirection vers la page de connexion
     }
     return (
         <div>

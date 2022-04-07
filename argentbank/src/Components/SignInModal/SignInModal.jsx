@@ -6,32 +6,32 @@ import "../../styles/SignInModal.css"
 import { logIn } from '../../Utils/reducers/userReducer'
 
 function SignInModal() {
-    const [userName, setUserName] = useState('')
+    const [userName, setUserName] = useState('') // set as local state the username / password / error / and the remember
     const [password, setPassword] = useState('')
     const [error, setError] = useState('')
     const [rememberMe, setRemenberMe ] = useState(false)
 
-    const dispatch = useDispatch()
+    const dispatch = useDispatch() 
     let navigate = useNavigate()
     
-    const handleSubmit = async (e) => { 
-      e.preventDefault()
-      setError('')
+    const handleSubmit = async (e) => {  // function called with the form submit
+      e.preventDefault() // prevent the default behavior of the form
+      setError('') 
 
-      if(userName.length === 0 || password.length === 0 ) {
+      if(userName.length === 0 || password.length === 0 ) { // if no value in imputs don't call the ApiProvider and return a visible error message 
         return setError("Veuillez renseigner un email et un mdp valide")
       }
-      const response = await new ApiProvider().userLogIn(userName, password, rememberMe)
+      const response = await new ApiProvider().userLogIn(userName, password, rememberMe) // call the userLogin method from ApiProvider to retrive JWTtoken
         if (response.status !== 200) {
-          setError("Mot de passe ou email inconnu")
+          setError("Mot de passe ou email inconnu") // set an error message if error
         }
       setPassword('')
       setUserName('')
-      dispatch(logIn(response.data.body.token))
-      navigate('/profile')
+      dispatch(logIn(response.data.body.token)) // dispatch the token in the global redux state
+      navigate('/profile') // redirect to /profile
     }
     useEffect(() => {
-      localStorage.setItem("remenberMe", JSON.stringify(rememberMe))
+      localStorage.setItem("remenberMe", JSON.stringify(rememberMe)) // set in the local storage the rememberMe
     })
 
 

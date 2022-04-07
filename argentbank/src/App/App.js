@@ -10,9 +10,9 @@ import { BrowserRouter, Route , Routes } from 'react-router-dom';
 import RememberLogin from '../Utils/RememberLogin';
 
 function App() {
-  const connected = useSelector(selectUserLogin)
+  const connected = useSelector(selectUserLogin) // retrieve the connected state
 
-  RememberLogin()
+  RememberLogin() // call the remember login function 
 
 
   return (
@@ -21,9 +21,9 @@ function App() {
         <Header />  
           <Routes>
             <Route path='/' element={<Home />} />
-            {connected ? (
+            {connected ? ( // if connected only allow the profile route 
               <Route exact path='/profile' element={<User />} />
-            ) :
+            ) : // if not connected only allow signIn route
             (
               <Route exact path='/signin' element={<SignInPage />} />
             )}

@@ -1,3 +1,4 @@
+// the differents selector used with the useSelector hook to retrive state properties
 export const selectUserLogin = (state) => state.user.connected
 
 export const selectUserData = (state) => state.user.userData

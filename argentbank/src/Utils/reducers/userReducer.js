@@ -1,11 +1,11 @@
 import { createReducer, createAction } from '@reduxjs/toolkit'
 
-const initialState = {
+const initialState = { // set an initial state for the feature
     connected: false,
     JWTtoken: null,
     userData: {},
 }
-
+// set the differents actions creators
 export const logIn = createAction('logIn')
 export const setUser = createAction('setUser')
 export const updateUser = createAction('updateUser')
@@ -13,7 +13,7 @@ export const logOut = createAction('logOut')
 
 export default createReducer(initialState, (builder) =>
     builder
-    .addCase(logIn, (draft, JWTtoken) => {
+    .addCase(logIn, (draft, JWTtoken) => { // 
         if (draft.connected === false) {
             draft.connected = true
             draft.JWTtoken = JWTtoken.payload

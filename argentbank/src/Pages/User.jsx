@@ -9,16 +9,16 @@ import { setUser } from "../Utils/reducers/userReducer"
 
 function User() {
     let dispatch = useDispatch()
-    let JWTtoken = useSelector(selectJWTtoken)
+    let JWTtoken = useSelector(selectJWTtoken) // retrieve the token 
 
     useEffect(() => {
         async function getUserProfile() {
-            const response = await new ApiProvider().getUserProfileData(JWTtoken)
+            const response = await new ApiProvider().getUserProfileData(JWTtoken) // retrieve userData 
             console.log(response.data.body)
-            dispatch(setUser(response.data.body))
+            dispatch(setUser(response.data.body)) // dispatch the response in the state redux
             return response
         }
-        getUserProfile()
+        getUserProfile() 
     }, [JWTtoken, dispatch])
     return (
         <div className="user-container">

@@ -8,22 +8,22 @@ import { selectFirstName, selectJWTtoken, selectLastName } from "../../Utils/sel
 function UserHeader() {
     let dispatch = useDispatch()
 
-    let [editMode, setEditMode] = useState(false)
-    let [editedFirstName, setEditedFirstName] = useState('')
-    let [editedLastName, setEditedLastNamee] = useState('')
+    let [editMode, setEditMode] = useState(false) // set an editMode local state
+    let [editedFirstName, setEditedFirstName] = useState('') // set  on localState the in modification firstname
+    let [editedLastName, setEditedLastNamee] = useState('') // set  on localState the in modification lastName
 
 
-    let firstNameFromGlobalState = useSelector(selectFirstName)
-    let lastNameFromGlobalState = useSelector(selectLastName)
-    let JWTtoken = useSelector(selectJWTtoken)
+    let firstNameFromGlobalState = useSelector(selectFirstName) // retrieve the firstName from the global state 
+    let lastNameFromGlobalState = useSelector(selectLastName) // retrieve the lastName from the global state
+    let JWTtoken = useSelector(selectJWTtoken) // retrive the JWTtoken from the global state redux
 
+    
     async function handleChangeUserName(firstName, lastName, JWTtoken) {
-        const response = await new ApiProvider().updateUserProfileData(firstName, lastName, JWTtoken)
-
+        const response = await new ApiProvider().updateUserProfileData(firstName, lastName, JWTtoken) // call the udpate method from API provider
 
         console.log(response)
-        dispatch(updateUser(response.data.body))
-        setEditMode(false)
+        dispatch(updateUser(response.data.body)) // dispatch the response with the updateUser action to update the state
+        setEditMode(false) 
     }
 
     return (
